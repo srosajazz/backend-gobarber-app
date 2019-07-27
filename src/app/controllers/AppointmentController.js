@@ -91,10 +91,10 @@ class AppointmentController {
      * Notify appointment provider
      */
     const user = await User.findByPk(req.userId);
-    const formattedDate = format(hourStart, " dd 'of'MMMM', on' H:mm'h'");
+    const formattedDate = format(hourStart, "MMMM dd', at' H:mm");
 
     await Notification.create({
-      content: `New appointment from ${user.name} ${formattedDate} `,
+      content: `New appointment from ${user.name} for ${formattedDate} `,
       user: provider_id,
     });
 
