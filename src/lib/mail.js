@@ -24,7 +24,14 @@ class Mail {
     this.transporter.use(
       'compile',
       nodemailerhbs({
-        viewEngine: exphbs.create({}),
+        viewEngine: exphbs.create({
+          layoutsDir: resolve(viewPath, 'layouts'),
+          partialsDir: resolve(viewPath, 'partials'),
+          defaultLayout: 'default',
+          extname: '.hbs',
+        }),
+        viewPath,
+        extName: '.hbs',
       })
     );
   }
@@ -36,4 +43,5 @@ class Mail {
     });
   }
 }
+
 export default new Mail();
